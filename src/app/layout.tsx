@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './global.scss';
+import Image from 'next/image';
 
 const basisGrotesqueArabicPro = localFont({
   src: [
@@ -44,7 +45,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={basisGrotesqueArabicPro.className}>{children}</body>
+      <body className={basisGrotesqueArabicPro.className}>
+        <nav>
+          <ul>
+            <li>
+              <a href="/">
+                <Image
+                  width={141}
+                  height={60}
+                  src="/images/logo.svg"
+                  alt="Serene logo"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="/products">Shop</a>
+            </li>
+            <li>
+              <a href="/about">About Us</a>
+            </li>
+          </ul>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
