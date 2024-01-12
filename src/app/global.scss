@@ -1,0 +1,29 @@
+@import '../sass/_normalize';
+@import '../sass/colors';
+@import '../sass/typograph';
+
+.theme-white,
+:root {
+  --surface-1: var(--color-white);
+  --surface-2: var(--color-grey-100);
+
+  --color-primary: var(--color-grey-900);
+  --color-secondary: var(--color-grey-400);
+  --color-primary-inverted: var(--color-white);
+  --color-secondary-inverted: var(--grey-400);
+
+  --color-accent: var(--color-green-500);
+  --color-gradient: linear-gradient(
+    var(--color-purple-400),
+    var(--color-blue-400)
+  );
+}
+
+body {
+  background: var(--surface-1);
+  color: var(--color-primary);
+  font-size: var(--step-0);
+}
+
+.container {
+}

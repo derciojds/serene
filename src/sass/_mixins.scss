@@ -1,0 +1,15 @@
+@mixin font(
+  $font-family: inherit,
+  $font-size,
+  $font-weight: normal,
+  $line-height: normal,
+  $letter-spacing: 0,
+  $color: inherit
+) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  color: $color;
+}
