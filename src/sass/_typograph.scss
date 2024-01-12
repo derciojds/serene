@@ -1,0 +1,14 @@
+/* @link https://utopia.fyi/clamp/calculator?a=430,1728,16—18|18—21|21—32|24—48|40—64|40—96&p=step */
+:root {
+  --step-0: clamp(1rem, 0.9586rem + 0.1541vw, 1.125rem); /* 16-18 */
+
+  --step-1: clamp(1.125rem, 1.0629rem + 0.2311vw, 1.3125rem); /* 18-21 */
+
+  --step-2: clamp(1.3125rem, 1.0847rem + 0.8475vw, 2rem); /* 21-32 */
+
+  --step-3: clamp(1.5rem, 1.0031rem + 1.849vw, 3rem); /* 24-48 */
+
+  --step-4: clamp(2.5rem, 2.0031rem + 1.849vw, 4rem); /* 40-64 */
+
+  --step-5: clamp(2.5rem, 1.3405rem + 4.3143vw, 6rem); /* 40-96 */
+}
