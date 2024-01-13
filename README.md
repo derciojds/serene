@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <a href="https://serene-theta.vercel.app">
+    <img alt="Serene homepage screenshot" src="./public/images/screenshot.webp">
+  </a>
 
-## Getting Started
+  <br/>
 
-First, run the development server:
+</div>
+
+<h1>Serene - Luxury Perfume Shopify & Next.js Website</h1>
+
+<br/>
+
+## Overview
+
+Welcome to the Serene repository! This project represents the codebase for a luxury perfume brand's Shopify-backed Next.js website. I aim to create an immersive online experience for users, combining the elegance of luxury perfumes with cutting-edge web technologies.
+
+## Features
+
+#### Next.js for React Framework
+
+> Leverage the power of Next.js for server-side rendering, efficient client-side navigation, and seamless integration with our Shopify Headless CMS.
+
+#### Shopify Headless CMS Integration
+
+> Utilize the Shopify API to dynamically fetch product information, collections, and other content, ensuring a real-time, data-driven experience for users.
+
+#### Responsive Design
+
+> Crafted with a mobile-first approach, ensuring an optimal user experience across various devices and screen sizes.
+
+#### Immersive UI/UX
+
+> Incorporate visually stunning design elements to reflect the luxury and sophistication of our brand.
+
+#### Sustainability
+
+> Integrate a dedicated section showcasing our commitment to sustainability, highlighting responsibly sourced ingredients and ethical practices.
+
+![serene screenshot mobile](./public/images/screenshot01.webp)
+
+## Tech Stack
+
+⚛️ **Next.js:** React framework for efficient server-side rendering and client-side navigation.
+
+🛍️ **Shopify API:** Headless CMS integration for dynamic product information and content.
+
+🔎 **OramaSearch:** Full-text and vector search engine with typo tolerance that enhances the search functionality on our website, providing users with a seamless and intuitive search experience.
+
+🧦 **GSAP (GreenSock Animation Platform):** A powerful JavaScript animation library for creating smooth and engaging animations on the web.
+
+## Quick Start
+
+#### 1. Clone the Repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:derciojds/serene.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<!-- # cd serene -->
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### 2. Install Dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+cd serene
+bun install
+```
 
-## Learn More
+#### 3. Configure Shopify API:
 
-To learn more about Next.js, take a look at the following resources:
+> Obtain your Shopify Store API credentials.
+> Create the `.env` file with your Shopify Store credentials and make sure that you're following the environment variables as in the [`.env.example`](./.env.example) file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 4. Run the Development Server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+bun run dev
+```
 
-## Deploy on Vercel
+The development server will be running at `http://localhost:3000.`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the **Creative Commons Attribution-NonCommercial (CC BY-NC) license** - see the [LICENSE](./LICENSE.md) file for details.
+
+## Acknowledgments
+
+Inspired by other successful e-commerce projects on GitHub.
+Contact
+For any inquiries or feedback, please contact derciojdsd@gmail.com.
+
+💫 Happy coding!
