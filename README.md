@@ -69,7 +69,7 @@ bun install
 #### 3. Configure Shopify API:
 
 > Obtain your Shopify Store API credentials.
-> Create the `.env` file with your Shopify Store credentials and make sure that you're following the environment variables as in the [`.env.example`](./.env.example) file.
+> Create the `.env` file with your Shopify Store credentials and make sure that you're following the environment variables as in the `example.env` file.
 
 #### 4. Run the Development Server:
 
