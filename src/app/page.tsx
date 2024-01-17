@@ -1,4 +1,4 @@
-import { getCollectionProducts } from '@/services/shopify/controllers/collection';
+import { getCollectionProducts } from '@/services/shopify/operations/collection';
 import Image from 'next/image';
 
 export default async function Home() {
