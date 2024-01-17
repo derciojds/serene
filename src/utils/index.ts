@@ -1,4 +1,10 @@
+import { Connection } from '@/services/shopify/types';
 import { ReadonlyURLSearchParams } from 'next/navigation';
+
+/*
+  Shopify utility functions
+  -------------------------------------------------------------------------------------
+*/
 
 export const createUrl = (
   pathname: string,
@@ -45,3 +51,11 @@ export const validateEnvironmentVariables = () => {
     );
   }
 };
+
+export const removeEdgesAndNodes = (array: Connection<any>) => {
+  return array.edges.map((edge) => edge?.node);
+};
+
+/*
+  ---------------------------------------------------------------------------------------
+*/
