@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './global.scss';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 const basisGrotesqueArabicPro = localFont({
   src: [
@@ -66,7 +67,9 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        {children}
+        <Suspense>
+          <main>{children}</main>
+        </Suspense>
       </body>
     </html>
   );
