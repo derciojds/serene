@@ -17,6 +17,10 @@
     var(--color-purple-400),
     var(--color-blue-400)
   );
+
+  --breakpoint-lg: 640px;
+  --breakpoint-md: 640px;
+  --breakpoint-sm: 640px;
 }
 
 body {
@@ -26,4 +30,14 @@ body {
 }
 
 .container {
+  --_max-width: 1600px;
+  --_small-screen-margins: 40px;
+
+  width: min(100% - var(--_small-screen-margins), var(--_max-width));
+  margin-inline: auto;
+  position: relative;
+
+  @media (max-width: var(--breakpoint-sm)) {
+    --_small-screen-margins: 16px;
+  }
 }

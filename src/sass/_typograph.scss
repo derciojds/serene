@@ -1,5 +1,3 @@
-@import './mixins';
-
 /* @link https://utopia.fyi/clamp/calculator?a=430,1728,16—18|18—21|21—32|24—48|40—64|40—96&p=step */
 :root {
   --step-0: clamp(1rem, 0.9586rem + 0.1541vw, 1.125rem); /* 16-18 */
@@ -10,25 +8,59 @@
   --step-5: clamp(2.5rem, 1.3405rem + 4.3143vw, 6rem); /* 40-96 */
 }
 
-// h1 .lg {
-// }
+@mixin font(
+  $font-family: inherit,
+  $font-size,
+  $font-weight: normal,
+  $line-height: normal,
+  $letter-spacing: 0,
+  $color: inherit
+) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  color: $color;
+}
 
-// h1 {
-//   @include font(inherit, var(--step-4), 500, 100%, -0.749px);
-// }
+/*
+    `fs` -> Font Style
+*/
 
-// h2 {
-//   @include font(inherit, var(--step-3), 700, 100%, -0.216px);
-// }
+.fs-display {
+  @include font(inherit, var(--step-5), 700, 110%, -1.28px);
+}
 
-// h3 {
-//   @include font(inherit, var(--step-2), 700, 115%, -0.749px);
-// }
+.fs-h1 {
+  @include font(inherit, var(--step-4), 500, 100%, -0.749px);
+}
 
-// p .lg {
-//   @include font(inherit, var(--step-1), 700, 115%);
-// }
+.fs-h2 {
+  @include font(inherit, var(--step-3), 700, 100%, -0.216px);
+}
 
-// p {
-//   @include font(inherit, var(--step-1), 400, 115%, 0.24px);
-// }
+.fs-h3 {
+  @include font(inherit, var(--step-2), 700, 115%, -0.749px);
+}
+
+.fs-body-lg {
+  @include font(inherit, var(--step-1), 700, 115%);
+}
+
+.fs-body-md {
+  @include font(inherit, var(--step-1), 400, 115%, 0.24px);
+}
+
+.fs-body-sm {
+  @include font(inherit, var(--step-0), 400, 150%, -0.18px);
+}
+
+.fs-caption {
+  @include font(inherit, var(--step-0), 400, 100%, 1.6px);
+  text-transform: uppercase;
+}
+
+.fs-button {
+  @include font(inherit, var(--step-1), 500, 100%, 0px);
+}
