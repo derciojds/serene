@@ -1,8 +1,8 @@
+import { Header } from '@/components/header';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './global.scss';
-import Image from 'next/image';
 import { Suspense } from 'react';
+import './global.scss';
 
 const basisGrotesqueArabicPro = localFont({
   src: [
@@ -47,26 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={basisGrotesqueArabicPro.className}>
-        <nav>
-          <ul>
-            <li>
-              <a href="/">
-                <Image
-                  width={141}
-                  height={60}
-                  src="/images/logo.svg"
-                  alt="Serene logo"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="/products">Shop</a>
-            </li>
-            <li>
-              <a href="/about">About Us</a>
-            </li>
-          </ul>
-        </nav>
+        <Header />
         <Suspense>
           <main>{children}</main>
         </Suspense>
