@@ -1,0 +1,26 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 24px;
+  border-radius: 3.7rem;
+  border: 0;
+  background: var(--surface-2);
+  transition: background 0.3s;
+
+  & svg {
+    stroke: var(--icon-stroke-color);
+  }
+
+  &[data-button-variant='ghost'] {
+    background: transparent;
+
+    &:hover {
+      background: rgba(#afafaf, 0.3);
+    }
+  }
+
+  &[data-button-size='sm'] {
+    padding: 1rem;
+  }
+}
