@@ -1,0 +1,61 @@
+@import '../../sass/include-media';
+
+.header {
+  --_logo-color: var(--color-primary);
+
+  padding: 2rem 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+
+  .logoLink svg {
+    fill: var(--_logo-color);
+  }
+
+  &[data-inverted='true'] {
+    --icon-stroke-color: var(--color-primary-inverted);
+    --_logo-color: var(--color-primary-inverted);
+    color: var(--color-primary-inverted);
+
+    // button {
+    //   svg {
+    //     stroke: var(--color-primary-inverted);
+    //   }
+    // }
+  }
+}
+.navContainer {
+  display: flex;
+  width: 100rem;
+  justify-content: space-between;
+  align-items: center;
+
+  @include media('<sm') {
+    nav:nth-child(1) {
+      display: none;
+    }
+
+    .toggleMenu {
+      display: list-item;
+    }
+
+    .logo {
+      width: 88px;
+    }
+  }
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navItemsLink {
+  padding: 0.5rem;
+  border-radius: 1.8rem;
+}
+
+.toggleMenu {
+  display: none;
+}
