@@ -1,3 +1,4 @@
+@import '../sass/include-media';
 @import '../sass/_normalize';
 @import '../sass/colors';
 @import '../sass/typograph';
@@ -18,9 +19,13 @@
     var(--color-blue-400)
   );
 
+  --icon-stroke-color: var(--color-primary);
+
   --breakpoint-lg: 640px;
   --breakpoint-md: 640px;
   --breakpoint-sm: 640px;
+
+  --hover-transition: 0.3s;
 }
 
 body {
@@ -37,7 +42,14 @@ body {
   margin-inline: auto;
   position: relative;
 
-  @media (max-width: var(--breakpoint-sm)) {
+  @include media('<sm') {
     --_small-screen-margins: 16px;
+  }
+}
+
+a {
+  transition: background var(--hover-transition);
+  &:hover {
+    background: rgba(#afafaf, 0.3);
   }
 }
