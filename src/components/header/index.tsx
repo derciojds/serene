@@ -1,20 +1,19 @@
 'use client';
 
+import { cn } from '@/utils';
+import * as Collapsible from '@radix-ui/react-collapsible';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ElementType, useEffect, useState } from 'react';
 import { Logo, Menu, Search, ShoppingBag, User } from '../Icons';
 import { Button } from '../button';
-
-import { cn } from '@/utils';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MutableRefObject, useLayoutEffect, useRef } from 'react';
 import styles from './header.module.scss';
 
-interface HeaderProps {
-  elToIntersect?: MutableRefObject<null>;
+interface NavButtonsProp {
+  icon: ElementType;
+  title: string;
+  onClick?: () => void;
 }
-
-gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   {
@@ -28,30 +27,20 @@ const navLinks = [
 ];
 
 export function Header() {
-  const headerRef = useRef(null);
-  useLayoutEffect(() => {
-    const el = document.querySelector('[data-intersection-element]');
+  const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
+  const [colorsAreInveted, setColorsAreInveted] = useState(false);
 
-    gsap.to(headerRef.current, {
-      scrollTrigger: {
-        trigger: el,
-        markers: true,
-        start: 'top top',
-        onEnter: () => {
-          console.log('on enter');
-        },
-        onEnterBack: () => {
-          console.log('Im leaving');
-        },
-      },
-      opacity: 0.5,
-    });
-  }, []);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === '/') setColorsAreInveted(true);
+    else setColorsAreInveted(false);
+  }, [pathname]);
 
   return (
-    <header ref={headerRef} data-inverted={true} className={styles.header}>
+    <header data-inverted={colorsAreInveted} className={styles.header}>
       <div className={cn('container', styles.navContainer)}>
-        <nav>
+        <nav className="hide-on-mobile">
           <ul className={styles.navItems}>
             {navLinks.map((link) => (
               <li key={link.url}>
@@ -75,48 +64,57 @@ export function Header() {
         <nav>
           <ul className={styles.navItems}>
             <li>
-              <Button.root
-                size="sm"
-                variant="ghost"
-                title="search for products"
-                element="button"
-              >
-                <Button.icon icon={Search} />
-              </Button.root>
+              <NavButton icon={Search} title={'search products'} />
+            </li>
+            <li className="hide-on-mobile">
+              <NavButton icon={User} title={'login'} />
             </li>
             <li>
-              <Button.root
-                variant="ghost"
-                size="sm"
-                title="login"
-                element="button"
-              >
-                <Button.icon icon={User} />
-              </Button.root>
+              <NavButton icon={ShoppingBag} title={'shopping bag'} />
             </li>
-            <li className={styles.shoppingBag}>
-              <Button.root
-                variant="ghost"
-                size="sm"
-                title="shopping bag"
-                element="button"
-              >
-                <Button.icon icon={ShoppingBag} />
-              </Button.root>
-            </li>
-            <li className={styles.toggleMenu}>
-              <Button.root
-                variant="ghost"
-                size="sm"
-                title="toggle menu"
-                element="button"
-              >
-                <Button.icon icon={Menu} />
-              </Button.root>
+            <li>
+              <MobileMenu />
             </li>
           </ul>
         </nav>
       </div>
     </header>
   );
+
+  function MobileMenu() {
+    return (
+      <Collapsible.Root open={mobileMenuIsOpen} className={styles.mobileMenu}>
+        <Collapsible.Trigger asChild>
+          <NavButton
+            icon={Menu}
+            title={'toggle menu'}
+            onClick={() => {
+              setMobileMenuIsOpen(!mobileMenuIsOpen);
+            }}
+          />
+        </Collapsible.Trigger>
+        <Collapsible.Content className={styles.mobileMenuContent}>
+          {navLinks.map((link) => (
+            <li key={link.url}>
+              <Link href={link.url}>{link.name}</Link>
+            </li>
+          ))}
+        </Collapsible.Content>
+      </Collapsible.Root>
+    );
+  }
+
+  function NavButton({ icon, title, onClick }: NavButtonsProp) {
+    return (
+      <Button.root
+        onClick={onClick}
+        variant="ghost"
+        size="sm"
+        title={title}
+        element="button"
+      >
+        <Button.icon icon={icon} />
+      </Button.root>
+    );
+  }
 }
