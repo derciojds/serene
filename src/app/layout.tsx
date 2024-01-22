@@ -1,38 +1,9 @@
+import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import { Suspense } from 'react';
+import { font } from './font';
 import './global.scss';
-
-const basisGrotesqueArabicPro = localFont({
-  src: [
-    {
-      path: '../assets/fonts/BasisGrotesqueArabicPro-Light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/BasisGrotesqueArabicPro-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/BasisGrotesqueArabicPro-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/BasisGrotesqueArabicPro-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/BasisGrotesqueArabicPro-Black.woff2',
-      weight: '900',
-      style: 'normal',
-    },
-  ],
-});
 
 export const metadata: Metadata = {
   title: 'Serene',
@@ -46,11 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={basisGrotesqueArabicPro.className}>
+      <body className={font.className}>
         <Header />
         <Suspense>
           <main>{children}</main>
         </Suspense>
+        <Footer />
       </body>
     </html>
   );
