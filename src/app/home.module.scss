@@ -1,11 +1,26 @@
-.hero {
+.heroWrapper {
+  margin-bottom: -100vh;
+  margin-bottom: -100dvh;
+
+  .heroSpacer {
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
+.heroContent {
+  position: sticky;
+  top: 0;
+
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   align-items: flex-end;
   color: var(--color-primary-inverted);
 
-  picture {
+  background: blue;
+
+  .heroImage {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -18,8 +33,9 @@
     }
   }
 
-  .heroContent {
+  .heroBody {
     display: flex;
+    align-items: flex-start;
     gap: 1.5rem;
     margin-bottom: 4.25rem;
     flex-direction: column;
@@ -36,5 +52,22 @@
     [data-button-size] {
       margin-top: 1rem;
     }
+  }
+}
+
+.main {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: var(--z-index-main-content);
+
+  /*
+    https://utopia.fyi/clamp/calculator/?a=430,1728,64%E2%80%9496|32%E2%80%9480
+  */
+  border-radius: clamp(2rem, 1.0062rem + 3.698vw, 5rem); /* 80px to 32px */
+  background: var(--surface-1);
+
+  .mainContent {
+    padding: clamp(4rem, 3.3374rem + 2.4653vw, 6rem) 0; /* 96px to 64px */
   }
 }

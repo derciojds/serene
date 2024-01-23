@@ -38,13 +38,21 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header data-inverted={colorsAreInveted} className={styles.header}>
+    <header
+      className={cn(
+        styles.header,
+        `${colorsAreInveted ? 'invert-colors' : ''}`,
+      )}
+    >
       <div className={cn('container', styles.navContainer)}>
         <nav className="hide-on-mobile">
           <ul className={styles.navItems}>
             {navLinks.map((link) => (
               <li key={link.url}>
-                <Link className={styles.navItemsLink} href={link.url}>
+                <Link
+                  className={cn(styles.navItemsLink, 'fs-button')}
+                  href={link.url}
+                >
                   {link.name}
                 </Link>
               </li>

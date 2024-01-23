@@ -1,21 +1,15 @@
 @import '../../sass/include-media';
 
 .header {
-  --_logo-color: var(--color-primary);
+  // --color-svg-fill: var(--color-primary);
 
   padding: 2rem 0;
   position: fixed;
   width: 100%;
-  z-index: 10;
+  z-index: var(--z-index-header);
 
   .logoLink svg {
-    fill: var(--_logo-color);
-  }
-
-  &[data-inverted='true'] {
-    --icon-stroke-color: var(--color-primary-inverted);
-    --_logo-color: var(--color-primary-inverted);
-    color: var(--color-primary-inverted);
+    fill: var(--color-svg-fill);
   }
 }
 .navContainer {
