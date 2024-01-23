@@ -1,4 +1,4 @@
-import { Connection } from '@/services/shopify/types';
+import { Connection } from '@/lib/shopify/types';
 import { ReadonlyURLSearchParams } from 'next/navigation';
 
 /*

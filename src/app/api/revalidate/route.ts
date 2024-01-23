@@ -1,4 +1,4 @@
-import { revalidate } from '@/services/shopify/webhooks';
+import { revalidate } from '@/lib/shopify/webhooks';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
