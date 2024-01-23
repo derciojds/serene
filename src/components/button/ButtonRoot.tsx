@@ -5,6 +5,7 @@ import styles from './button.module.scss';
 type ButtonRootProps = {
   size?: 'lg' | 'sm';
   variant?: 'primary' | 'secondary' | 'ghost';
+  type?: 'button' | 'submit' | 'reset';
   className?: string;
   children: NonNullable<ReactNode>;
 } & (AnchorProps | ButtonProps);
@@ -29,19 +30,19 @@ export function ButtonRoot({
   const commonProps = {
     'data-button-size': size,
     'data-button-variant': variant,
-    className: cn(styles.container, className),
+    className: cn(styles.container, className, 'fs-button'),
   };
 
   switch (element) {
     case 'a':
       return (
-        <a {...commonProps} {...(restProps as AnchorProps)}>
+        <a role="button" {...commonProps} {...(restProps as AnchorProps)}>
           {children}
         </a>
       );
     case 'button':
       return (
-        <button {...commonProps} {...(restProps as ButtonProps)}>
+        <button type="button" {...commonProps} {...(restProps as ButtonProps)}>
           {children}
         </button>
       );
