@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "framer-motion": "^10.18.0",
     "gsap": "^3.12.5",
     "next": "14.0.4",
     "react": "^18",
