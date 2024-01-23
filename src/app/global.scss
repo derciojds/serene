@@ -11,8 +11,6 @@
 
   --color-primary: var(--color-grey-900);
   --color-secondary: var(--color-grey-400);
-  --color-primary-inverted: var(--color-white);
-  --color-secondary-inverted: var(--color-grey-400);
 
   --color-accent: var(--color-green-500);
   --color-gradient: linear-gradient(
@@ -35,6 +33,13 @@
   --hover-transition: 0.3s;
 }
 
+.theme-dark {
+  --color-primary: var(--color-white);
+  --color-secondary: var(--color-grey-400);
+  --color-svg-stroke: var(--color-primary);
+  --color-svg-fill: var(--color-primary);
+}
+
 body {
   background: var(--surface-1);
   color: var(--color-primary);
@@ -44,12 +49,6 @@ body {
 
 main {
   min-height: 100vh;
-}
-
-.invert-colors {
-  --color-svg-stroke: var(--color-primary-inverted);
-  --color-svg-fill: var(--color-primary-inverted);
-  color: var(--color-primary-inverted);
 }
 
 .container {

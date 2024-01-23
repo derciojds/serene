@@ -5,7 +5,7 @@ import styles from '../home.module.scss';
 
 export function Hero() {
   return (
-    <section className={styles.heroWrapper}>
+    <section className={cn(styles.heroWrapper, 'theme-dark')}>
       <div className={styles.heroContent}>
         <picture className={styles.heroImage}>
           <source
@@ -23,7 +23,7 @@ export function Hero() {
             Experience the power of scent to uplift your mood and enhance your
             day.
           </p>
-          <Button.root href="/products" element="a">
+          <Button.root className="theme-white" href="/products" element="a">
             <Button.content text="Shop" />
             <Button.icon icon={ArrowRight} />
           </Button.root>

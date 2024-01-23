@@ -16,7 +16,7 @@
   min-height: 100dvh;
   display: flex;
   align-items: flex-end;
-  color: var(--color-primary-inverted);
+  color: var(--color-primary);
 
   background: blue;
 
@@ -46,7 +46,7 @@
 
     p {
       max-width: 30ch;
-      color: var(--color-secondary-inverted);
+      color: var(--color-secondary);
     }
 
     [data-button-size] {

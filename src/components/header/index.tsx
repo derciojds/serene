@@ -39,10 +39,7 @@ export function Header() {
 
   return (
     <header
-      className={cn(
-        styles.header,
-        `${colorsAreInveted ? 'invert-colors' : ''}`,
-      )}
+      className={cn(styles.header, `${colorsAreInveted ? 'theme-dark' : ''}`)}
     >
       <div className={cn('container', styles.navContainer)}>
         <nav className="hide-on-mobile">

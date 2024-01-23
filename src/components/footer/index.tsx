@@ -6,7 +6,7 @@ import styles from './footer.module.scss';
 
 export function Footer() {
   return (
-    <footer className={cn(styles.footerWrapper, 'invert-colors')}>
+    <footer className={cn(styles.footerWrapper, 'theme-dark')}>
       <div className={styles.footerSpacer}></div>
       <div className={styles.footerContent}>
         <div className={styles.footerPadding}></div>

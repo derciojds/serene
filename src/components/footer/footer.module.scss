@@ -1,4 +1,6 @@
 .footerWrapper {
+  color: var(--color-primary);
+
   margin-top: -100vh;
   margin-top: -100dvh;
 
@@ -35,7 +37,7 @@
       --fluid-110-226: clamp(6.875rem, 4.4732rem + 8.9368vw, 14.125rem);
 
       margin: auto;
-      fill: var(--color-primary-inverted);
+      fill: var(--color-svg-fill);
       width: var(--fluid-258-532);
       height: var(--fluid-110-226);
       overflow: visible;
@@ -60,7 +62,7 @@
       gap: 0.5rem;
     }
     div h3 {
-      color: var(--color-secondary-inverted);
+      color: var(--color-secondary);
     }
   }
 }
