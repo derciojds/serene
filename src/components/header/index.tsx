@@ -2,6 +2,9 @@
 
 import { cn } from '@/utils';
 import * as Collapsible from '@radix-ui/react-collapsible';
+import { motion, useScroll } from 'framer-motion';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ElementType, useEffect, useState } from 'react';
@@ -15,6 +18,8 @@ interface NavButtonsProp {
   onClick?: () => void;
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
 const navLinks = [
   {
     name: 'Shop',
@@ -24,28 +29,63 @@ const navLinks = [
     name: 'About Us',
     url: '/about',
   },
+  {
+    name: 'Blog',
+    url: '/blog',
+  },
+  {
+    name: 'Terms',
+    url: '/terms',
+  },
 ];
+
+const variants = {
+  /** this is the "visible" key and it's correlating styles **/
+  visible: { opacity: 1, y: 0 },
+  /** this is the "hidden" key and it's correlating styles **/
+  hidden: { opacity: 0, y: '-160%' },
+};
 
 export function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
-  const [colorsAreInveted, setColorsAreInveted] = useState(false);
+  const [colorsAreInveted, setColorsAreInveted] = useState(true);
+  const [showNavigation, setShowNavigation] = useState(true);
 
+  const { scrollY } = useScroll();
   const pathname = usePathname();
+
+  function update() {
+    if (scrollY?.current < scrollY?.prev) {
+      setShowNavigation(true);
+    } else if (scrollY?.current > 100 && scrollY?.current > scrollY?.prev) {
+      setShowNavigation(false);
+    }
+  }
 
   useEffect(() => {
     if (pathname === '/') setColorsAreInveted(true);
     else setColorsAreInveted(false);
-  }, [pathname]);
+
+    return () => {
+      window.addEventListener('scroll', update);
+    };
+  });
 
   return (
     <header
       className={cn(styles.header, `${colorsAreInveted ? 'theme-dark' : ''}`)}
     >
-      <div className={cn('container', styles.navContainer)}>
+      <motion.div
+        variants={variants}
+        initial="visible"
+        animate={showNavigation ? 'visible' : 'hidden'}
+        transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
+        className={cn('container', styles.navContainer)}
+      >
         <nav className="hide-on-mobile">
           <ul className={styles.navItems}>
-            {navLinks.map((link) => (
-              <li key={link.url}>
+            {navLinks.map((link, i) => (
+              <li className="item" key={`id_${i}`}>
                 <Link
                   className={cn(styles.navItemsLink, 'fs-button')}
                   href={link.url}
@@ -56,7 +96,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        <h1>
+        <div className={styles.logo}>
           <Link
             className={styles.logoLink}
             aria-label="Home"
@@ -65,7 +105,7 @@ export function Header() {
           >
             <Logo />
           </Link>
-        </h1>
+        </div>
         <nav>
           <ul className={styles.navItems}>
             <li>
@@ -77,12 +117,12 @@ export function Header() {
             <li>
               <NavButton icon={ShoppingBag} title={'shopping bag'} />
             </li>
-            <li>
+            <div>
               <MobileMenu />
-            </li>
+            </div>
           </ul>
         </nav>
-      </div>
+      </motion.div>
     </header>
   );
 

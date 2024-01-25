@@ -1,8 +1,6 @@
 @import '../../sass/include-media';
 
 .header {
-  // --color-svg-fill: var(--color-primary);
-
   padding: 2rem 0;
   position: fixed;
   width: 100%;
@@ -14,12 +12,36 @@
   }
 }
 .navContainer {
-  display: flex;
+  --_columns: 3;
+  grid-template-columns: repeat(var(--_columns), 1fr);
+  display: grid;
   justify-content: space-between;
   align-items: center;
 
+  nav {
+    &:first-child {
+      margin-right: auto;
+    }
+
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+
+  .logo {
+    margin: auto;
+  }
+
   .mobileMenu {
     display: none;
+  }
+
+  @include media('<sm') {
+    --_columns: 2;
+
+    .logo {
+      margin: 0;
+    }
   }
 
   @include media('<sm') {
@@ -28,7 +50,7 @@
     }
 
     .logo {
-      width: 88px;
+      width: 141px;
     }
   }
 }

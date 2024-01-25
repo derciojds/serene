@@ -47,7 +47,7 @@ Welcome to the Serene repository! This project represents the codebase for a lux
 
 🔎 **OramaSearch:** Full-text and vector search engine with typo tolerance that enhances the search functionality on our website, providing users with a seamless and intuitive search experience.
 
-🧦 **GSAP (GreenSock Animation Platform):** A powerful JavaScript animation library for creating smooth and engaging animations on the web.
+🧦 **Framer Motion:** A declarative React animation library.
 
 ## Quick Start
 
