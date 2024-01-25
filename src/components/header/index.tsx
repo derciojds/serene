@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils';
 import * as Collapsible from '@radix-ui/react-collapsible';
-import { motion, useScroll } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ElementType, useEffect, useState } from 'react';
@@ -35,11 +35,9 @@ const navLinks = [
   },
 ];
 
-const variants = {
-  /** this is the "visible" key and it's correlating styles **/
-  visible: { opacity: 1, y: 0 },
-  /** this is the "hidden" key and it's correlating styles **/
-  hidden: { opacity: 0, y: '-160%' },
+const toggleNavVariants = {
+  show: { opacity: 1, y: 0 },
+  hide: { opacity: 0, y: '-100%' },
 };
 
 export function Header() {
@@ -50,36 +48,28 @@ export function Header() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
 
-  useEffect(() => {
-    function update() {
-      // @ts-ignore
-      if (scrollY?.current < scrollY?.prev) {
-        setShowNavigation(true);
-        // @ts-ignore
-      } else if (scrollY?.current > 100 && scrollY?.current > scrollY?.prev) {
-        setShowNavigation(false);
-      }
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous && latest > 150) {
+      setShowNavigation(false);
+    } else {
+      setShowNavigation(true);
     }
+  });
 
+  useEffect(() => {
     if (pathname === '/') setColorsAreInveted(true);
     else setColorsAreInveted(false);
-
-    return () => {
-      window.addEventListener('scroll', update);
-    };
-  }, [pathname, scrollY]);
+  }, [pathname]);
 
   return (
-    <header
+    <motion.header
+      variants={toggleNavVariants}
+      animate={showNavigation ? 'show' : 'hide'}
+      transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
       className={cn(styles.header, `${colorsAreInveted ? 'theme-dark' : ''}`)}
     >
-      <motion.div
-        variants={variants}
-        initial="visible"
-        animate={showNavigation ? 'visible' : 'hidden'}
-        transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
-        className={cn('container', styles.navContainer)}
-      >
+      <div className={cn('container', styles.navContainer)}>
         <nav className="hide-on-mobile">
           <ul className={styles.navItems}>
             {navLinks.map((link, i) => (
@@ -120,8 +110,8 @@ export function Header() {
             </div>
           </ul>
         </nav>
-      </motion.div>
-    </header>
+      </div>
+    </motion.header>
   );
 
   function MobileMenu() {
