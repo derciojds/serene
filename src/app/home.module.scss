@@ -57,15 +57,15 @@
 
 .main {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
-  z-index: var(--z-index-main-content);
+  min-height: 110vh;
+  // min-height: 110dvh;
+  background: var(--surface-1);
+  // z-index: var(--z-index-main-content);
 
   /*
     https://utopia.fyi/clamp/calculator/?a=430,1728,64%E2%80%9496|32%E2%80%9480
   */
   border-radius: clamp(2rem, 1.0062rem + 3.698vw, 5rem); /* 80px to 32px */
-  background: var(--surface-1);
 
   .mainContent {
     padding: clamp(4rem, 3.3374rem + 2.4653vw, 6rem) 0; /* 96px to 64px */

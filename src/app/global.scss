@@ -21,9 +21,9 @@
   --color-svg-fill: var(--color-primary);
   --color-svg-stroke: var(--color-primary);
 
-  --z-index-header: 3;
-  --z-index-hero: 1;
-  --z-index-main-content: 2;
+  --z-index-header: 4;
+  --z-index-hero: 2;
+  --z-index-main-content: 3;
   --z-index-footer: 1;
 
   --breakpoint-lg: 640px;
@@ -48,7 +48,10 @@ body {
 }
 
 main {
-  min-height: 100vh;
+  position: relative;
+  min-height: 110vh;
+  min-height: 110dvh;
+  z-index: var(--z-index-main-content);
 }
 
 .container {
@@ -67,7 +70,7 @@ main {
 .container-narrow {
   @extend .container;
 
-  --_max-width: 1060px;
+  --_max-width: 1330px;
 }
 
 .hide-on-mobile {
