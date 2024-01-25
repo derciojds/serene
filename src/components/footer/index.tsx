@@ -26,7 +26,7 @@ export function Footer() {
         top: 0,
         behavior: 'smooth',
       });
-      return setScrollTop(false);
+      setScrollTop(false);
     }
   }, [scrollTop]);
 
