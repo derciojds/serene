@@ -3,8 +3,6 @@
 import { cn } from '@/utils';
 import * as Collapsible from '@radix-ui/react-collapsible';
 import { motion, useScroll } from 'framer-motion';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ElementType, useEffect, useState } from 'react';
@@ -17,8 +15,6 @@ interface NavButtonsProp {
   title: string;
   onClick?: () => void;
 }
-
-gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   {
