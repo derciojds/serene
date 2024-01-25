@@ -54,22 +54,24 @@ export function Header() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
 
-  function update() {
-    if (scrollY?.current < scrollY?.prev) {
-      setShowNavigation(true);
-    } else if (scrollY?.current > 100 && scrollY?.current > scrollY?.prev) {
-      setShowNavigation(false);
-    }
-  }
-
   useEffect(() => {
+    function update() {
+      // @ts-ignore
+      if (scrollY?.current < scrollY?.prev) {
+        setShowNavigation(true);
+        // @ts-ignore
+      } else if (scrollY?.current > 100 && scrollY?.current > scrollY?.prev) {
+        setShowNavigation(false);
+      }
+    }
+
     if (pathname === '/') setColorsAreInveted(true);
     else setColorsAreInveted(false);
 
     return () => {
       window.addEventListener('scroll', update);
     };
-  });
+  }, [pathname, scrollY]);
 
   return (
     <header
