@@ -1,4 +1,4 @@
-.footerWrapper {
+.footer {
   color: var(--color-primary);
 
   margin-top: -100vh;
@@ -18,17 +18,15 @@
 }
 
 .footerContent {
+  overflow-x: hidden;
   position: sticky;
   bottom: 0;
 
-  & > div {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
   .logo {
+    display: block;
     width: 100%;
+    padding-bottom: 2rem;
+
     svg {
       /*
         https://utopia.fyi/clamp/calculator/?a=430,1728,258%E2%80%94532|110%E2%80%94226
@@ -45,29 +43,46 @@
   }
 }
 
-.groups {
+.content {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: space-between;
+}
 
-  .navsGroup {
+.nav {
+  display: flex;
+  gap: 2rem;
+
+  & > div,
+  & ul {
     display: flex;
-    gap: 2rem;
-
-    & > div,
-    & ul {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    div h3 {
-      color: var(--color-secondary);
-    }
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  div h3 {
+    color: var(--color-secondary);
   }
 }
 
 .copyright {
   display: flex;
   justify-content: space-between;
+  padding-top: 2rem;
+}
+
+.scollTopBtn {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  transition: scale var(--hover-transition);
+
+  &:hover {
+    scale: 0.9;
+  }
+
+  &:active {
+    scale: 0.5;
+  }
 }
