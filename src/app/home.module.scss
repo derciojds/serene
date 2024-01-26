@@ -65,7 +65,9 @@
   /*
     https://utopia.fyi/clamp/calculator/?a=430,1728,64%E2%80%9496|32%E2%80%9480
   */
-  border-radius: clamp(2rem, 1.0062rem + 3.698vw, 5rem); /* 80px to 32px */
+
+  --fluid-40-60: clamp(2.5rem, 2.086rem + 1.541vi, 3.75rem);
+  border-radius: var(--fluid-40-60);
 
   .mainContent {
     padding: clamp(4rem, 3.3374rem + 2.4653vw, 6rem) 0; /* 96px to 64px */
