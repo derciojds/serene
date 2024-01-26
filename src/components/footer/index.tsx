@@ -40,7 +40,7 @@ export function Footer() {
         <div className={styles.footerPadding}></div>
         <motion.button
           onClick={() => setScrollTop(true)}
-          className={styles.scollTopBtn}
+          className={cn(styles.scollTopBtn, 'hide-on-mobile')}
           type="button"
           style={{ rotate }}
         >
