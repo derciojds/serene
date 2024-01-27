@@ -18,7 +18,7 @@
   align-items: flex-end;
   color: var(--color-primary);
 
-  background: blue;
+  background: var(--color-grey-700);
 
   .heroImage {
     position: absolute;
@@ -68,8 +68,17 @@
 
   --fluid-40-60: clamp(2.5rem, 2.086rem + 1.541vi, 3.75rem);
   border-radius: var(--fluid-40-60);
+}
 
-  .mainContent {
-    padding: clamp(4rem, 3.3374rem + 2.4653vw, 6rem) 0; /* 96px to 64px */
+.mainContent {
+  padding: clamp(4rem, 3.3374rem + 2.4653vw, 6rem) 0; /* 96px to 64px */
+  .featuredProducts {
+    & > div:first-child {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .button {
+    margin: 3rem auto 0 auto;
   }
 }
