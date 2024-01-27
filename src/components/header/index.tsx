@@ -74,10 +74,7 @@ export function Header() {
           <ul className={styles.navItems}>
             {navLinks.map((link, i) => (
               <li className="item" key={`id_${i}`}>
-                <Link
-                  className={cn(styles.navItemsLink, 'fs-button')}
-                  href={link.url}
-                >
+                <Link className={'fs-button'} href={link.url}>
                   {link.name}
                 </Link>
               </li>
