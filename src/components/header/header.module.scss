@@ -59,11 +59,15 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-}
 
-.navItemsLink {
-  padding: 0.5rem;
-  border-radius: 1.8rem;
+  a {
+    padding: 0.5rem;
+    border-radius: 1.8rem;
+    transition: background var(--hover-transition);
+    &:hover {
+      background: rgba(#afafaf, 0.3);
+    }
+  }
 }
 
 .mobileMenuContent {
