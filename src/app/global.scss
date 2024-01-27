@@ -56,14 +56,14 @@ main {
 
 .container {
   --_max-width: 1600px;
-  --_small-screen-margins: 40px;
+  --_small-screen-margins: 80px;
 
   width: min(100% - var(--_small-screen-margins), var(--_max-width));
   margin-inline: auto;
   position: relative;
 
   @include media('<sm') {
-    --_small-screen-margins: 16px;
+    --_small-screen-margins: 32px;
   }
 }
 
@@ -79,14 +79,20 @@ main {
   }
 }
 
-a:not([role='button']) {
-  transition: background var(--hover-transition);
-  &:hover {
-    background: rgba(#afafaf, 0.3);
-  }
-}
+// a:not([role='button']) {
+//   transition: background var(--hover-transition);
+//   &:hover {
+//     background: rgba(#afafaf, 0.3);
+//   }
+// }
 
 ::selection {
   background: var(--color-green-200);
   color: var(--color-primary);
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
