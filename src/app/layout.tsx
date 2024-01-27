@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { font } from './font';
 import './global.scss';
+import Template from './template.';
 
 export const metadata: Metadata = {
   title: 'Serene',
@@ -20,7 +21,9 @@ export default function RootLayout({
       <body className={font.className}>
         <Header />
         <Suspense>
-          <main>{children}</main>
+          <Template>
+            <main>{children}</main>
+          </Template>
         </Suspense>
         <Footer />
       </body>
