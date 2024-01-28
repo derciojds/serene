@@ -54,6 +54,14 @@ main {
   z-index: var(--z-index-main-content);
 }
 
+section {
+  margin-bottom: 6rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .container {
   --_max-width: 1600px;
   --_small-screen-margins: 80px;
@@ -95,4 +103,11 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.gradient-text {
+  background: linear-gradient(91deg, #c965ec 53.06%, #b4c6fc 90.69%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
