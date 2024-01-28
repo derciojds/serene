@@ -1,3 +1,5 @@
+@import '/src/sass/include-media';
+
 .heroWrapper {
   margin-bottom: -100vh;
   margin-bottom: -100dvh;
@@ -17,7 +19,6 @@
   display: flex;
   align-items: flex-end;
   color: var(--color-primary);
-
   background: var(--color-grey-700);
 
   .heroImage {
@@ -58,9 +59,8 @@
 .main {
   position: relative;
   min-height: 110vh;
-  // min-height: 110dvh;
+  min-height: 110dvh;
   background: var(--surface-1);
-  // z-index: var(--z-index-main-content);
 
   /*
     https://utopia.fyi/clamp/calculator/?a=430,1728,64%E2%80%9496|32%E2%80%9480
@@ -72,13 +72,80 @@
 
 .mainContent {
   padding: clamp(4rem, 3.3374rem + 2.4653vw, 6rem) 0; /* 96px to 64px */
-  .featuredProducts {
-    & > div:first-child {
-      margin-bottom: 3rem;
-    }
-  }
 
   .button {
     margin: 3rem auto 0 auto;
+  }
+}
+
+.ingredients {
+  .presentation {
+    display: flex;
+    justify-content: space-between;
+    gap: 3.25rem;
+
+    @include media('<sm') {
+      flex-direction: column-reverse;
+      gap: 1.25rem;
+    }
+
+    .indicators {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+
+      @include media('<sm') {
+        flex-direction: row;
+        padding: 0 2rem;
+      }
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .slide {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(20%, 655px));
+      gap: 1.25rem;
+
+      @include media('<lg') {
+        grid-template-columns: minmax(20%, 655px);
+      }
+
+      .slideImage {
+        border-radius: 2rem;
+        overflow: hidden;
+      }
+
+      .slideText {
+        font-weight: 500;
+        color: var(--color-secondary);
+
+        @include media('<lg') {
+          span:not(.active) {
+            display: none;
+          }
+        }
+
+        @include media('<sm') {
+          order: -1;
+        }
+
+        .active {
+          color: var(--color-primary);
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .gradient {
+    bottom: -11%;
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
   }
 }
