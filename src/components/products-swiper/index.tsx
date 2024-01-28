@@ -43,6 +43,8 @@ export function ProductsSwiper({ children, ...props }: Props) {
       }
     }
 
+    checkMedia();
+
     window.addEventListener('resize', checkMedia);
     return () => {
       window.removeEventListener('resize', checkMedia);
