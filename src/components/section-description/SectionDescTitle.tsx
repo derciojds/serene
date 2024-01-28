@@ -1,3 +1,3 @@
 export function SectionDescTitle({ text }: { text: string }) {
-  return <div className="fs-h2">{text}</div>;
+  return <h2 className="fs-h2" dangerouslySetInnerHTML={{ __html: text }} />;
 }

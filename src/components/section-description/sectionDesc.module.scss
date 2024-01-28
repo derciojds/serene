@@ -1,8 +1,12 @@
 .root {
-  max-width: 520px;
+  margin-bottom: 3rem;
 
   .caption {
     margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    max-width: 15ch;
   }
 
   .paragraph {
