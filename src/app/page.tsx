@@ -1,8 +1,10 @@
 import { cn } from '@/utils';
 import styles from './home.module.scss';
+import { FeaturedProducts } from './sections/FeaturedProducts';
+import { Hero } from './sections/Hero';
 import { Ingredients } from './sections/Ingredients';
-import { FeaturedProducts } from './sections/featured-products';
-import { Hero } from './sections/hero';
+import { Newsletter } from './sections/Newsletter';
+import { Testmonials } from './sections/Testimonials';
 
 export default async function Home() {
   return (
@@ -12,6 +14,8 @@ export default async function Home() {
         <div className={cn(styles.mainContent, 'container')}>
           <FeaturedProducts />
           <Ingredients />
+          <Testmonials />
+          <Newsletter />
         </div>
       </div>
     </>
