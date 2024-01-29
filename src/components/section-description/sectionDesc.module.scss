@@ -14,3 +14,19 @@
     max-width: 30ch;
   }
 }
+
+.center {
+  text-align: center;
+
+  & * {
+    margin: auto;
+  }
+}
+
+.right {
+  text-align: right;
+
+  & * {
+    margin-left: auto;
+  }
+}
