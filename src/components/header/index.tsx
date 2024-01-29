@@ -1,11 +1,12 @@
 'use client';
 
+import { useDimensions } from '@/hooks/useDimensions';
 import { cn } from '@/utils';
 import * as Collapsible from '@radix-ui/react-collapsible';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ElementType, useEffect, useState } from 'react';
+import { ElementType, useEffect, useRef, useState } from 'react';
 import { Logo, Menu, Search, ShoppingBag, User } from '../Icons';
 import { Button } from '../button';
 import styles from './header.module.scss';
@@ -44,9 +45,13 @@ export function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [colorsAreInveted, setColorsAreInveted] = useState(true);
   const [showNavigation, setShowNavigation] = useState(true);
+  const [isInHero, setIsInHero] = useState(true);
+
+  const mainRef = useRef<HTMLElement | null>(null);
 
   const { scrollY } = useScroll();
-  const pathname = usePathname();
+
+  const { height } = useDimensions();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious();
@@ -55,12 +60,24 @@ export function Header() {
     } else {
       setShowNavigation(true);
     }
+
+    if (latest > previous && latest > height) {
+      setIsInHero(false);
+      // OUTSIDE THE HERO SECTION
+    } else if (latest < previous && latest < height) {
+      setIsInHero(true);
+      // 📥 INSIDE THE HERO SECTION
+    }
   });
 
+  const pathname = usePathname();
+
   useEffect(() => {
-    if (pathname === '/') setColorsAreInveted(true);
+    if (pathname === '/' && isInHero) setColorsAreInveted(true);
     else setColorsAreInveted(false);
-  }, [pathname]);
+
+    mainRef.current = document.querySelector('#main');
+  }, [pathname, isInHero]);
 
   return (
     <motion.header
@@ -69,6 +86,10 @@ export function Header() {
       transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
       className={cn(styles.header, `${colorsAreInveted ? 'theme-dark' : ''}`)}
     >
+      <div
+        style={{ display: colorsAreInveted ? 'none' : 'block' }}
+        className={styles.background}
+      ></div>
       <div className={cn('container', styles.navContainer)}>
         <nav className="hide-on-mobile">
           <ul className={styles.navItems}>
