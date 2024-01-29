@@ -7,14 +7,16 @@ export function Hero() {
   return (
     <section className={cn(styles.heroWrapper, 'theme-dark')}>
       <div className={styles.heroContent}>
-        <picture className={styles.heroImage}>
-          <source
-            media="(min-width: 768px)"
-            srcSet="/images/hero-desktop.jpg"
-          />
-          <source media="(min-width: 320px)" srcSet="/images/hero-mobile.jpg" />
-          <img draggable="false" src="/images/hero-desktop.jpg" alt="Hero" />
-        </picture>
+        <video
+          className={styles.heroVideo}
+          muted
+          autoPlay
+          loop
+          poster="/images/hero-video.mp4_20240129_213835.721.jpg"
+        >
+          <source src="/videos/hero-video.mp4" />
+        </video>
+        <div className={styles.overlay}></div>
         <div className={cn('container', styles.heroBody)}>
           <h1 className="fs-h1">
             Indulge in luxury with mood-enhancing perfumes
