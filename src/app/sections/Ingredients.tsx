@@ -63,14 +63,6 @@ export function Ingredients() {
           </p>
         </div>
       </div>
-      <Image
-        className={styles.gradient}
-        draggable="false"
-        width={1727}
-        height={596}
-        src="/images/Background Gradient.png"
-        alt="gradient"
-      />
     </section>
   );
 }
