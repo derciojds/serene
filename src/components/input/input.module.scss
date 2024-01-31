@@ -1,0 +1,24 @@
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  max-width: 566px;
+  width: 100%;
+}
+
+.input {
+  padding: 1.27rem 2rem;
+  border-radius: 3rem;
+  background: var(--Grey-100, #f6f6f6);
+  border: none;
+  flex-grow: 2;
+  width: 100%;
+  max-width: 34.75rem;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5rem;
+}
