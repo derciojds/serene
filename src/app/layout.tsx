@@ -1,5 +1,4 @@
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
+import { Navigation } from '@/components/header';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { font } from './font';
@@ -19,13 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Header />
+        <Navigation />
         <Suspense>
-          <Template>
-            <main>{children}</main>
-          </Template>
+          <Template>{children}</Template>
         </Suspense>
-        <Footer />
       </body>
     </html>
   );

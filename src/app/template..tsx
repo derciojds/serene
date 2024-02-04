@@ -1,7 +1,14 @@
 'use client';
 
 import ReactLenis from '@studio-freight/react-lenis';
+import { usePathname } from 'next/navigation';
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  return <ReactLenis root>{children}</ReactLenis>;
+  const pathname = usePathname();
+
+  return pathname === '/' ? (
+    <ReactLenis root>{children}</ReactLenis>
+  ) : (
+    <>{children}</>
+  );
 }
