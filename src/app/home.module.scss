@@ -115,11 +115,39 @@
         padding: 0 2rem;
       }
 
-      img {
-        border-radius: 50%;
+      & > div {
+        position: relative;
+        opacity: 0.5;
 
-        @include media('<sm') {
-          width: 6.25rem;
+        &.active {
+          opacity: 1;
+
+          svg {
+            rect {
+              animation: dash 3s ease-out;
+            }
+
+            @keyframes dash {
+              0% {
+                stroke-dashoffset: 390;
+              }
+              100% {
+                stroke-dashoffset: 0;
+              }
+            }
+          }
+        }
+
+        img {
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          @include media('<sm') {
+            width: 6.25rem;
+          }
         }
       }
     }
@@ -136,11 +164,32 @@
       .slideImage {
         border-radius: 2rem;
         overflow: hidden;
+        position: relative;
+        aspect-ratio: 1 / 1;
+        background: var(--color-grey-700);
+
+        img {
+          position: absolute;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+          transform: scale(1.5) rotate(20deg);
+          opacity: 0;
+          transition:
+            transform 1s,
+            opacity 0.5s;
+          z-index: 5;
+
+          &.active {
+            transform: scale(1) rotate(0);
+            opacity: 1;
+            z-index: 6;
+          }
+        }
       }
 
       .slideText {
-        font-weight: 500;
-        color: var(--color-secondary);
+        color: var(--color-grey-300);
 
         @include media('<lg') {
           span:not(.active) {
@@ -150,11 +199,12 @@
 
         @include media('<sm') {
           order: -1;
+          height: 100px;
         }
 
         .active {
           color: var(--color-primary);
-          font-weight: 700;
+          transition: color 0.5s;
         }
       }
     }
