@@ -1,0 +1,42 @@
+.products {
+  padding-top: 16vh;
+  max-width: 100%;
+  --_columns: 4;
+
+  display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(min(191px, 100%), 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%/3, max(191px, 100%/5)), 1fr)
+  );
+  gap: 1.25rem;
+  row-gap: 3.5rem;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  height: 8vh;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  div {
+    width: 1rem;
+    height: 4px;
+    background: var(--color-grey-400);
+    animation: 0.5s linear infinite alternate expand-right;
+  }
+
+  @keyframes expand-right {
+    from {
+      transform: scaleX(10);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
