@@ -112,3 +112,7 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+div[data-radix-popper-content-wrapper] {
+  z-index: 6 !important;
+}
