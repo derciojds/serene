@@ -53,7 +53,13 @@ export const validateEnvironmentVariables = () => {
 };
 
 export const removeEdgesAndNodes = (array: Connection<any>) => {
-  return array.edges.map((edge) => edge?.node);
+  return array.edges.map((edge) => {
+    if (edge?.cursor) {
+      return { cursor: edge?.cursor, ...edge?.node };
+    } else {
+      return { ...edge?.node };
+    }
+  });
 };
 
 /*
@@ -62,6 +68,35 @@ export const removeEdgesAndNodes = (array: Connection<any>) => {
 
 // function to join class names
 
-export function cn(...classNames: string[]) {
-  return classNames.filter(Boolean).join(' ');
+export function cn(...classNames: any[]) {
+  return classNames.filter((className) => className).join(' ');
+}
+
+type FilterData =
+  | {
+      [key: string]: string | undefined;
+    }
+  | undefined;
+
+export function buildFilterString(filterData: FilterData): string {
+  const filterConditions: string[] = [];
+
+  // Process scent filter
+  if (filterData?.scent && filterData.scent.length > 0) {
+    const scentFilters = filterData.scent
+      .split(',')
+      .map((scent) => `tag:${scent}`);
+    filterConditions.push(`(${scentFilters.join(' OR ')})`);
+  }
+
+  // Process price filter
+  if (filterData?.price) {
+    const [min, max] = filterData.price.split(',');
+    filterConditions.push(
+      `variants.price:>=${min} AND variants.price:<=${max}`,
+    );
+  }
+
+  // Combine all filter conditions
+  return filterConditions.join(' AND ');
 }
