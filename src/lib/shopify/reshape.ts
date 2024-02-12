@@ -1,4 +1,5 @@
 import { removeEdgesAndNodes } from '@/utils';
+import { HIDDEN_PRODUCT_TAG } from './constants';
 import {
   Cart,
   Collection,
@@ -8,7 +9,6 @@ import {
   ShopifyCollection,
   ShopifyProduct,
 } from './types';
-import { HIDDEN_PRODUCT_TAG } from './constants';
 
 export const reshapeImages = (
   images: Connection<Image>,
