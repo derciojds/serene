@@ -8,6 +8,7 @@ const productFragment = /* GraphQL */ `
     availableForSale
     title
     description
+    totalInventory
     descriptionHtml
     options {
       id
