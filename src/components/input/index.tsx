@@ -8,6 +8,7 @@ export function Input() {
       <input
         className={cn(styles.input, 'fs-body-lg')}
         placeholder="Email"
+        required
         type="email"
         name="email"
         id="emailInput"
@@ -17,6 +18,7 @@ export function Input() {
         size="sm"
         element="button"
         className={styles.button}
+        type="submit"
       >
         <Button.content text="subscribe" />
       </Button.root>
