@@ -6,13 +6,21 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery,
 } from '../queries/product';
+import { reshapeProduct, reshapeProducts } from '../reshape';
 import {
+  PageInfo,
   Product,
   ShopifyProductOperation,
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
 } from '../types';
-import { reshapeProduct, reshapeProducts } from '../reshape';
+
+type GetProductsProps = Omit<ShopifyProductsOperation['variables'], ''>;
+
+type GetProductsResponse = {
+  products: Product[];
+  pageInfo: PageInfo;
+};
 
 export async function getProduct(handle: string): Promise<Product | undefined> {
   const res = await shopifyFetch<ShopifyProductOperation>({
@@ -44,11 +52,9 @@ export async function getProducts({
   query,
   reverse,
   sortKey,
-}: {
-  query?: string;
-  reverse?: boolean;
-  sortKey?: string;
-}): Promise<Product[]> {
+  first,
+  after,
+}: GetProductsProps): Promise<GetProductsResponse> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
     tags: [TAGS.products],
@@ -56,8 +62,13 @@ export async function getProducts({
       query,
       reverse,
       sortKey,
+      first,
+      after,
     },
   });
 
-  return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+  const products = reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+  const pageInfo = res.body.data.products.pageInfo;
+
+  return { products, pageInfo };
 }
