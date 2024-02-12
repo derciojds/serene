@@ -1,10 +1,23 @@
 export type Maybe<T> = T | null;
 
 export type Connection<T> = {
+  pageInfo: PageInfo;
   edges: Array<Edge<T>>;
 };
 
+export type PageInfo = {
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  startCursor: string;
+  endCursor: string;
+};
+
+export type ReshapeProductsProps = {
+  products: ShopifyProduct[];
+};
+
 export type Edge<T> = {
+  cursor: string;
   node: T;
 };
 
@@ -109,9 +122,11 @@ export type ShopifyCollection = {
 };
 
 export type ShopifyProduct = {
+  cursor: string;
   id: string;
   handle: string;
   availableForSale: boolean;
+  totalInventory: number;
   title: string;
   description: string;
   descriptionHtml: string;
@@ -256,10 +271,13 @@ export type ShopifyProductRecommendationsOperation = {
 export type ShopifyProductsOperation = {
   data: {
     products: Connection<ShopifyProduct>;
+    pageInfo: PageInfo;
   };
   variables: {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    first?: number;
+    after?: string;
   };
 };
