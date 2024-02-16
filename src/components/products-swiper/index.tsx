@@ -31,7 +31,7 @@ export function ProductsSwiper({ children, ...props }: Props) {
 
   useEffect(() => {
     function checkMedia() {
-      const mql1 = window.matchMedia('(max-width: 768px)').matches;
+      const mql1 = window.matchMedia('(max-width: 700px)').matches;
       const mql2 = window.matchMedia('(max-width: 1020px)').matches;
 
       if (mql1) {
