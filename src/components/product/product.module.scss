@@ -15,6 +15,12 @@
     border-radius: 1.5rem;
     transition: filter 0.3s;
 
+    .tag {
+      display: none;
+      position: absolute;
+      right: 1rem;
+    }
+
     &:hover {
       filter: brightness(0.8);
     }
@@ -31,5 +37,15 @@
       margin-bottom: 0.5rem;
       font-weight: 500;
     }
+  }
+}
+
+.unavailable {
+  .tag {
+    display: block !important;
+  }
+
+  .image {
+    filter: saturate(0);
   }
 }

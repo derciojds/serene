@@ -19,13 +19,8 @@ export async function FeaturedProducts() {
       </SectionDesc.root>
       <ProductsSwiper>
         {products.length > 0 &&
-          products.map(({ featuredImage, title, priceRange }, index) => (
-            <Product
-              key={index}
-              image={featuredImage.url}
-              price={priceRange.maxVariantPrice.amount}
-              title={title}
-            />
+          products.map((product) => (
+            <Product key={product.title} product={product} />
           ))}
       </ProductsSwiper>
       <Button.root
