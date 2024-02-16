@@ -12,13 +12,11 @@ export async function NavContent() {
 
   const processedMenu = menu.map((item) => {
     if (item.path === '/search/all') {
-      // redirect to /products
       return {
         title: item.title,
         path: '/products',
       };
     } else if (item.path === '/') {
-      // hide Home
       return null;
     } else {
       return {
