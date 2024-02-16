@@ -1,25 +1,33 @@
 'use client';
-
-import { Sort } from '@/components/Icons';
-import { Filter } from '@/components/filter';
-import { Product, ProductSkeleton } from '@/components/product';
+import { ProductGridItems } from '@/components/layout/products/ProductGridItems';
+import { ProductGridItemsSkeleton } from '@/components/layout/products/ProductGridItemsSkeleton';
+import { ProductsFilter } from '@/components/layout/products/ProductsFilter';
+import { defaultSort, sorting } from '@/lib/shopify/constants';
 import { getProducts } from '@/lib/shopify/operations/product';
 import { Product as TProduct } from '@/lib/shopify/types';
-import { useFilterStore } from '@/stores/filterStore';
 import { buildFilterString } from '@/utils';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import styles from './products.module.scss';
 
-export default function ProductsPage() {
-  const first = 12;
+export default function ProductsPage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | undefined };
+}) {
+  const FIRST = 12;
 
-  const filter = useFilterStore((state) => state.selectedContent);
-  const filterString = buildFilterString(filter) || undefined;
+  const { scent, price, sort } = searchParams || {};
+  const filterString = buildFilterString({ scent, price }) || undefined;
+
+  const { sortKey, reverse } =
+    sorting.find((item) => item.slug === sort) || defaultSort;
 
   const fetchProducts = async ({ pageParam }: { pageParam?: string }) => {
     const { products, pageInfo } = await getProducts({
-      first,
+      sortKey,
+      reverse,
+      first: FIRST,
       after: pageParam,
       query: filterString,
     });
@@ -27,7 +35,7 @@ export default function ProductsPage() {
   };
 
   const { data, error, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
-    queryKey: ['products', filterString],
+    queryKey: ['products', filterString, sortKey, reverse],
     queryFn: fetchProducts,
     initialPageParam: undefined,
     getNextPageParam: (lastPage) => {
@@ -40,10 +48,11 @@ export default function ProductsPage() {
     },
   });
 
+  // @TODO
   const filteredProducts = data?.pages.reduce((acc: TProduct[], page) => {
     let products = page.products;
 
-    if (filter['availability']?.includes('Out of Stock')) {
+    if (searchParams?.availability?.includes('out of stock')) {
       products = page.products.filter(
         (product) => product.totalInventory === 0,
       );
@@ -62,47 +71,13 @@ export default function ProductsPage() {
   return (
     <main className={'container'}>
       <div className={styles.spacer}></div>
-      <div className={styles.filters}>
-        <div>
-          <Filter
-            trigger={{ label: 'Scent' }}
-            type="checkbox"
-            content={['Floral', 'Woody', 'Fruity']}
-          />
-          <Filter
-            trigger={{ label: 'Availability' }}
-            type="radio"
-            content={['In Stock', 'Out of Stock']}
-          />
-          <Filter
-            trigger={{ label: 'Price' }}
-            type="slider"
-            min={0}
-            max={100}
-          />
-        </div>
-        <Filter
-          trigger={{
-            label: 'Sort by',
-            icon: Sort,
-            className: styles.sortButton,
-          }}
-          type="radio"
-          content={['New', 'Old']}
-        />
-      </div>
+      <ProductsFilter />
       <div className={styles.products}>
-        {status === 'pending'
-          ? Array.from({ length: first }, (_, i) => <ProductSkeleton key={i} />)
-          : filteredProducts?.map((product) => (
-              <Product
-                key={product.handle}
-                handle={product.handle}
-                image={product.featuredImage.url}
-                title={product.title}
-                price={product.priceRange.minVariantPrice.amount}
-              />
-            ))}
+        {status === 'pending' ? (
+          <ProductGridItemsSkeleton length={FIRST} />
+        ) : (
+          <ProductGridItems products={filteredProducts} />
+        )}
       </div>
       <div ref={ref} className={styles.footer}>
         {hasNextPage ? (
@@ -110,7 +85,7 @@ export default function ProductsPage() {
             <div></div>
           </div>
         ) : (
-          <p>There is no more products</p>
+          <p>There are no more products</p>
         )}
       </div>
     </main>
