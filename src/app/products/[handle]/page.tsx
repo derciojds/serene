@@ -1,3 +1,5 @@
+import { QuantitySelector } from '@/components/layout/product/QuantitySelector';
+import { VariantSelector } from '@/components/layout/product/VariantSelector';
 import { HIDDEN_PRODUCT_TAG } from '@/lib/shopify/constants';
 import { getProduct } from '@/lib/shopify/operations/product';
 import { Image as TImage } from '@/lib/shopify/types';
@@ -65,15 +67,8 @@ export default async function ProductPage({ params }: { params: { handle: string
           </div>
           <div className={styles.variants}>
             <form>
-              <fieldset>
-                <legend className="fs-body-lg">Size</legend>
-                {product.variants.map((variant) => (
-                  <div key={variant.id}>
-                    <input type="radio" name="variant" id={variant.id.replace(/\D/g, '')} />
-                    <label htmlFor={variant.id.replace(/\D/g, '')}>{variant.title}</label>
-                  </div>
-                ))}
-              </fieldset>
+              <VariantSelector options={product.options} variants={product.variants} />
+              <QuantitySelector totalInventory={product.totalInventory} />
             </form>
             <div>
               <h2 className="fs-body-lg">Description</h2>
