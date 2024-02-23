@@ -7,6 +7,7 @@ type ButtonRootProps = {
   variant?: 'primary' | 'secondary' | 'ghost';
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  disabled?: boolean;
   children: NonNullable<ReactNode>;
 } & (AnchorProps | ButtonProps);
 
@@ -25,12 +26,18 @@ export function ButtonRoot({
   variant = 'primary',
   className = '',
   children,
+  disabled,
   ...restProps
 }: ButtonRootProps) {
   const commonProps = {
     'data-button-size': size,
     'data-button-variant': variant,
-    className: cn(styles.container, className, 'fs-button'),
+    className: cn(
+      styles.container,
+      className,
+      'fs-button',
+      disabled ? styles.disabled : '',
+    ),
   };
 
   switch (element) {

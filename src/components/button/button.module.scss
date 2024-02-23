@@ -1,8 +1,8 @@
 .container,
 a.container {
-  width: fit-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 1.25rem 3rem;
   border-radius: 3.7rem;
   gap: 1.5rem;
@@ -42,5 +42,19 @@ a.container {
 
   &[data-button-size='sm'] {
     padding: 1rem;
+  }
+}
+
+a.container {
+  width: fit-content;
+}
+
+.disabled {
+  cursor: no-drop;
+  background-color: var(--surface-2);
+  color: var(--color-secondary);
+
+  &:hover {
+    filter: none;
   }
 }
