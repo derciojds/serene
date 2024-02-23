@@ -1,4 +1,5 @@
 import { Navigation } from '@/components/header';
+import Providers from '@/lib/query/provider';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { font } from './font';
@@ -18,10 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Navigation />
-        <Suspense>
-          <Template>{children}</Template>
-        </Suspense>
+        <Providers>
+          <Navigation />
+          <Suspense>
+            <Template>
+              <main>{children}</main>
+            </Template>
+          </Suspense>
+        </Providers>
       </body>
     </html>
   );
