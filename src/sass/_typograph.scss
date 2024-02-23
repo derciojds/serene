@@ -33,11 +33,11 @@
 }
 
 .fs-h1 {
-  @include font(inherit, var(--step-4), 500, 100%, -0.749px);
+  @include font(inherit, var(--step-4), 500, 110%, -0.749px);
 }
 
 .fs-h2 {
-  @include font(inherit, var(--step-3), 700, 100%, -0.216px);
+  @include font(inherit, var(--step-3), 700, 110%, -0.216px);
 }
 
 .fs-h3 {
