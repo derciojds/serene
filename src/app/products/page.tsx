@@ -20,8 +20,7 @@ export default function ProductsPage({
   const { scent, price, sort } = searchParams || {};
   const filterString = buildFilterString({ scent, price }) || undefined;
 
-  const { sortKey, reverse } =
-    sorting.find((item) => item.slug === sort) || defaultSort;
+  const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
   const fetchProducts = async ({ pageParam }: { pageParam?: string }) => {
     const { products, pageInfo } = await getProducts({
@@ -53,9 +52,7 @@ export default function ProductsPage({
     let products = page.products;
 
     if (searchParams?.availability?.includes('out of stock')) {
-      products = page.products.filter(
-        (product) => product.totalInventory === 0,
-      );
+      products = page.products.filter((product) => product.totalInventory === 0);
     }
     return [...acc, ...products];
   }, []);
@@ -69,16 +66,14 @@ export default function ProductsPage({
   }
 
   return (
-    <main className={'container'}>
-      <div className={styles.spacer}></div>
+    <div className={'container'}>
+      <div className="spacer"></div>
       <ProductsFilter />
-      <div className={styles.products}>
-        {status === 'pending' ? (
-          <ProductGridItemsSkeleton length={FIRST} />
-        ) : (
-          <ProductGridItems products={filteredProducts} />
-        )}
-      </div>
+      {status === 'pending' ? (
+        <ProductGridItemsSkeleton length={FIRST} />
+      ) : (
+        <ProductGridItems products={filteredProducts} />
+      )}
       <div ref={ref} className={styles.footer}>
         {hasNextPage ? (
           <div className={styles.loading}>
@@ -88,6 +83,6 @@ export default function ProductsPage({
           <p>There are no more products</p>
         )}
       </div>
-    </main>
+    </div>
   );
 }

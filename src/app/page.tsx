@@ -1,4 +1,6 @@
+import { Footer } from '@/components/footer';
 import { cn } from '@/utils';
+import { Suspense } from 'react';
 import styles from './home.module.scss';
 import { FeaturedProducts } from './sections/FeaturedProducts';
 import { Hero } from './sections/Hero';
@@ -9,15 +11,20 @@ import { Testmonials } from './sections/Testimonials';
 export default async function Home() {
   return (
     <>
-      <Hero />
-      <div className={styles.main}>
-        <div className={cn(styles.mainContent, 'container')}>
-          <FeaturedProducts />
-          <Ingredients />
-          <Testmonials />
-          <Newsletter />
+      <main>
+        <Hero />
+        <div className={styles.main}>
+          <div className={cn(styles.mainContent, 'container')}>
+            <Suspense>
+              <FeaturedProducts />
+            </Suspense>
+            <Ingredients />
+            <Testmonials />
+            <Newsletter />
+          </div>
         </div>
-      </div>
+      </main>
+      <Footer />
     </>
   );
 }
