@@ -100,3 +100,19 @@ export function buildFilterString(filterData: FilterData): string {
   // Combine all filter conditions
   return filterConditions.join(' AND ');
 }
+
+// intl utility function for converting currency
+export function formatCurrency({
+  amount,
+  currency,
+  locale,
+}: {
+  amount: number;
+  currency: string;
+  locale: string;
+}) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+  }).format(amount);
+}
