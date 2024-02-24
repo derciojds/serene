@@ -1,0 +1,29 @@
+@import '/src/sass/include-media';
+
+.details {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+
+  @include media('<700px') {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info {
+    max-width: 385px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .description {
+      p {
+        margin-top: 0.5rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+}
