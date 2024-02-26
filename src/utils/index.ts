@@ -6,10 +6,7 @@ import { ReadonlyURLSearchParams } from 'next/navigation';
   -------------------------------------------------------------------------------------
 */
 
-export const createUrl = (
-  pathname: string,
-  params: URLSearchParams | ReadonlyURLSearchParams,
-) => {
+export const createUrl = (pathname: string, params: URLSearchParams | ReadonlyURLSearchParams) => {
   const paramsString = params.toString();
   const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
 
@@ -17,15 +14,10 @@ export const createUrl = (
 };
 
 export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
-  stringToCheck.startsWith(startsWith)
-    ? stringToCheck
-    : `${startsWith}${stringToCheck}`;
+  stringToCheck.startsWith(startsWith) ? stringToCheck : `${startsWith}${stringToCheck}`;
 
 export const validateEnvironmentVariables = () => {
-  const requiredEnvironmentVariables = [
-    'SHOPIFY_STORE_DOMAIN',
-    'SHOPIFY_STOREFRONT_ACCESS_TOKEN',
-  ];
+  const requiredEnvironmentVariables = ['SHOPIFY_STORE_DOMAIN', 'SHOPIFY_STOREFRONT_ACCESS_TOKEN'];
   const missingEnvironmentVariables = [] as string[];
 
   requiredEnvironmentVariables.forEach((envVar) => {
@@ -83,18 +75,14 @@ export function buildFilterString(filterData: FilterData): string {
 
   // Process scent filter
   if (filterData?.scent && filterData.scent.length > 0) {
-    const scentFilters = filterData.scent
-      .split(',')
-      .map((scent) => `tag:${scent}`);
+    const scentFilters = filterData.scent.split(',').map((scent) => `tag:${scent}`);
     filterConditions.push(`(${scentFilters.join(' OR ')})`);
   }
 
   // Process price filter
   if (filterData?.price) {
     const [min, max] = filterData.price.split(',');
-    filterConditions.push(
-      `variants.price:>=${min} AND variants.price:<=${max}`,
-    );
+    filterConditions.push(`variants.price:>=${min} AND variants.price:<=${max}`);
   }
 
   // Combine all filter conditions
@@ -104,15 +92,15 @@ export function buildFilterString(filterData: FilterData): string {
 // intl utility function for converting currency
 export function formatCurrency({
   amount,
-  currency,
+  currencyCode,
   locale,
 }: {
-  amount: number;
-  currency: string;
+  amount: string;
+  currencyCode: string;
   locale: string;
 }) {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
-    currency,
-  }).format(amount);
+    currency: currencyCode,
+  }).format(parseFloat(amount));
 }
