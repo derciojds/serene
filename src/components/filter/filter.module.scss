@@ -1,0 +1,197 @@
+.triggerButton {
+  user-select: none;
+  display: flex;
+  gap: 1rem;
+  stroke: var(--color-primary);
+  background: var(--surface-2);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3.75rem;
+  text-transform: capitalize;
+  transition:
+    filter 0.3s,
+    transform 0.3s;
+
+  &.open {
+    stroke: var(--color-white);
+    background: var(--color-grey-800);
+    color: var(--color-white);
+
+    span:not(.customIcon) {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    transform: scale(0.7);
+  }
+}
+
+.menuContent {
+  background: var(--surface-1);
+  min-width: 13.75rem;
+  border-radius: 1rem;
+  box-shadow:
+    0px 0px 20px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  border: 1px solid var(--color-grey-200);
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  animation-name: slideDownAndFade;
+}
+
+.dropdownMenuLabel {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem;
+  user-select: none;
+
+  button {
+    border: none;
+    stroke: var(--color-primary);
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background: var(--color-grey-200);
+}
+
+.checkboxItem {
+  line-height: 1;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 5px;
+  position: relative;
+  padding-left: 25px;
+  user-select: none;
+  outline: none;
+  margin: 0.5rem 1rem;
+
+  &:hover {
+    background-color: var(--color-grey-100);
+  }
+}
+
+.dropdownMenuItemIndicator {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownMenuArrow {
+  fill: none;
+}
+
+.sliderContainer {
+  padding: 0 1rem;
+}
+
+.sliderRoot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 100%;
+  height: 1.25rem;
+}
+
+.sliderTrack {
+  background-color: var(--color-grey-300);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 3px;
+}
+
+.sliderRange {
+  position: absolute;
+  background-color: var(--color-grey-600);
+  border-radius: 9999px;
+  height: 100%;
+}
+
+.sliderThumb {
+  cursor: pointer;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-white);
+  border: 3px solid var(--color-grey-600);
+  box-shadow: 0 2px 10px var(--color-grey-300);
+  border-radius: 1.5rem;
+}
+
+.sliderThumb:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px rgba($color: #000000, $alpha: 0.2);
+}
+
+.sliderLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.inputs {
+  padding: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  margin-right: 3rem;
+
+  div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    label {
+      line-height: 1;
+      user-select: none;
+    }
+
+    input[type='number'] {
+      width: 3.3rem;
+      border: 2px solid var(--color-grey-300);
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.5rem;
+    }
+  }
+}
+
+.applyButton {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
