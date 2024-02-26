@@ -14,11 +14,17 @@
   flex-grow: 2;
   width: 100%;
   max-width: 34.75rem;
+  font-weight: 500;
+
+  &::placeholder {
+    color: var(--color-grey-300);
+  }
 }
 
 .button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 0.5rem;
+  right: 1rem;
+  font-weight: 600;
 }
