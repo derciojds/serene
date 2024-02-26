@@ -1,25 +1,37 @@
+import { Product } from '@/lib/shopify/types';
+import { cn } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Price } from '../price';
+import { Tag } from '../tag';
 import styles from './product.module.scss';
 
-interface ProductProps {
-  image: string;
-  title: string;
-  price: string;
-  handle: string;
-}
+export function Product({ product }: { product: Product }) {
+  const {
+    priceRange: { maxVariantPrice },
+    availableForSale,
+  } = product;
 
-export function Product({ image, price, title, handle }: ProductProps) {
+  const containerClass = cn(!availableForSale ? styles.unavailable : '', styles.container);
+
   return (
-    <article className={styles.container}>
-      <Link href={`products/${handle}`} className={styles.image}>
-        <Image width={350} height={350} src={image} alt={title} />
+    <article className={containerClass}>
+      <Link href={`/products/${product.handle}`} className={styles.image}>
+        <div className={styles.tag}>
+          <Tag variant="sold" />
+        </div>
+        <Image width={350} height={350} src={product.featuredImage.url} alt={product.title} />
       </Link>
       <footer>
-        <Link href={`products/${handle}`}>
-          <h3 className="fs-body-md truncate">{title}</h3>
+        <Link href={`/products/${product.handle}`}>
+          <h3 className="fs-body-md truncate">{product.title}</h3>
         </Link>
-        <p className="fs-body-sm">{price}</p>
+
+        <Price
+          className="fs-body-sm"
+          amount={maxVariantPrice.amount}
+          currencyCode={maxVariantPrice.currencyCode}
+        />
       </footer>
     </article>
   );
