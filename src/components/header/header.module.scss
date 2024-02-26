@@ -1,7 +1,7 @@
 @import '../../sass/include-media';
 
 .header {
-  padding: 2rem 0;
+  padding-top: 2rem;
   position: fixed;
   width: 100%;
   z-index: var(--z-index-header);
@@ -9,14 +9,21 @@
 
   .background {
     width: 100%;
-    height: 120%;
+    height: 140%;
     position: absolute;
     top: 0;
     background: linear-gradient(180deg, #fff 40%, rgba(255, 255, 255, 0) 80%);
+    pointer-events: none;
   }
 
   .logoLink svg {
     fill: var(--color-svg-fill);
+  }
+}
+
+body[data-scroll-locked] {
+  .header {
+    width: calc(100% - var(--removed-body-scroll-bar-size));
   }
 }
 
@@ -27,7 +34,7 @@
   justify-content: space-between;
   align-items: center;
 
-  nav {
+  ul {
     &:first-child {
       margin-right: auto;
     }
@@ -70,6 +77,7 @@
   gap: 1rem;
 
   a {
+    white-space: nowrap;
     padding: 0.5rem;
     border-radius: 1.8rem;
     transition: background var(--hover-transition);

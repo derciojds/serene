@@ -2,7 +2,8 @@ import { getMenu } from '@/lib/shopify/operations/menu';
 import { Menu } from '@/lib/shopify/types';
 import { cn } from '@/utils';
 import Link from 'next/link';
-import { Logo, Search, ShoppingBag, User } from '../Icons';
+import { Logo, Search, User } from '../Icons';
+import Cart from '../cart';
 import { MobileMenu } from './MobileMenu';
 import { NavButton } from './NavButton';
 import styles from './header.module.scss';
@@ -46,12 +47,7 @@ export async function NavContent() {
         </ul>
       </div>
       <div className={styles.logo}>
-        <Link
-          className={styles.logoLink}
-          aria-label="Home"
-          title="Home"
-          href="/"
-        >
+        <Link className={styles.logoLink} aria-label="Home" title="Home" href="/">
           <Logo />
         </Link>
       </div>
@@ -63,11 +59,11 @@ export async function NavContent() {
           <NavButton icon={User} title={'login'} />
         </li>
         <li>
-          <NavButton icon={ShoppingBag} title={'shopping bag'} />
+          <Cart />
         </li>
-        <div>
+        <li className={styles.mobileMenu}>
           <MobileMenu menu={processedMenu as Menu[]} />
-        </div>
+        </li>
       </ul>
     </nav>
   );

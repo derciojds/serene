@@ -12,7 +12,7 @@ export function MobileMenu({ menu }: { menu: Menu[] | null[] }) {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
   return (
-    <Collapsible.Root open={mobileMenuIsOpen} className={styles.mobileMenu}>
+    <Collapsible.Root open={mobileMenuIsOpen}>
       <Collapsible.Trigger asChild>
         <NavButton
           icon={MenuIcon}
