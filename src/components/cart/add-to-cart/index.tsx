@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/button';
-import { LoadingDots } from '@/components/loading-dots';
+import { LoadingRing } from '@/components/spiner/Ring';
 import { ProductVariant } from '@/lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
 import { CSSProperties } from 'react';
@@ -54,7 +54,7 @@ function SubmitButton({
         type="submit"
       >
         <Button.content text="Add to Cart" />
-        {pending ? <Button.icon icon={LoadingDots} /> : null}
+        {pending ? <Button.icon icon={LoadingRing} /> : null}
       </Button.root>
     </>
   );

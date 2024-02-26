@@ -1,0 +1,235 @@
+.dialogOverlay {
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 45;
+}
+
+.triggerButton {
+  display: flex;
+  gap: 0.5rem;
+  stroke: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 500;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3.75rem;
+  background: transparent;
+
+  &:hover {
+    background: rgba(#afafaf, 0.3);
+  }
+}
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 2rem;
+  background-color: var(--surface-1);
+  position: absolute;
+  right: calc(-1 * var(--removed-body-scroll-bar-size));
+  top: 0;
+  z-index: 46;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  button {
+    border: none;
+  }
+
+  .dialogHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .closeButton {
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.emptyCart,
+.cartContent {
+  flex: 1 1 auto;
+}
+
+.cartContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .orderSummary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+
+    p:first-child {
+      font-weight: 500;
+    }
+  }
+
+  .checkoutButton {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 3rem;
+    font-weight: 500;
+    width: 100%;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+  }
+}
+
+.emptyCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  p {
+    text-align: center;
+    color: var(--color-secondary);
+    width: 30ch;
+    max-width: 100%;
+  }
+}
+
+.product {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: calc(1rem + 8px);
+}
+
+.deleteProductButton {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+
+  button {
+    background-color: var(--color-grey-200);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 300ms;
+
+    &:hover {
+      background-color: var(--color-green-500);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--color-primary);
+    }
+  }
+}
+
+.productInfo {
+  display: flex;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  gap: 0.5rem;
+
+  .productImage {
+    overflow: hidden;
+    border-radius: 0.7rem;
+    border: 1px solid var(--color-grey-200);
+
+    img {
+      aspect-ratio: 1/1;
+      width: 100%;
+      height: 100%;
+      background-color: var(--surface-2);
+      object-fit: cover;
+    }
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span {
+      display: block;
+      max-width: 15ch;
+      font-weight: 500;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    p {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: self-end;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.quantityEditor {
+  background-color: var(--surface-2);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  gap: 0.5rem;
+
+  p {
+    min-width: 2ch;
+    text-align: center;
+  }
+
+  button {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      stroke: var(--color-primary);
+    }
+  }
+}
