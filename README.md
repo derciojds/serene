@@ -7,6 +7,10 @@
 
 </div>
 
+<p>⚠️ This website is in construction ⚠️ </p>
+
+<br/>
+
 <h1>Serene - Luxury Perfume Shopify & Next.js Website</h1>
 
 <br/>
