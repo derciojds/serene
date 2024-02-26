@@ -13,10 +13,7 @@
   --color-secondary: var(--color-grey-400);
 
   --color-accent: var(--color-green-500);
-  --color-gradient: linear-gradient(
-    var(--color-purple-400),
-    var(--color-blue-400)
-  );
+  --color-gradient: linear-gradient(var(--color-purple-400), var(--color-blue-400));
 
   --color-svg-fill: var(--color-primary);
   --color-svg-stroke: var(--color-primary);
@@ -31,6 +28,12 @@
   --breakpoint-sm: 640px;
 
   --hover-transition: 0.3s;
+
+  --space-height: 17vh;
+
+  // container
+  --max-container-width: 1600px;
+  --container-margins: 80px;
 }
 
 .theme-dark {
@@ -64,15 +67,12 @@ section {
 }
 
 .container {
-  --_max-width: 1600px;
-  --_small-screen-margins: 80px;
-
-  width: min(100% - var(--_small-screen-margins), var(--_max-width));
+  width: min(100% - var(--container-margins), var(--max-container-width));
   margin-inline: auto;
   position: relative;
 
   @include media('<sm') {
-    --_small-screen-margins: 32px;
+    --container-margins: 32px;
   }
 }
 
@@ -88,9 +88,19 @@ section {
   }
 }
 
+.sr-only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .spacer {
   width: 100%;
-  height: 16vh;
+  height: var(--space-height);
 }
 
 ::selection {
@@ -107,6 +117,7 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
+  appearance: textfield;
 }
 
 .truncate {
