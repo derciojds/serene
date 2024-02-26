@@ -32,12 +32,7 @@ export function ButtonRoot({
   const commonProps = {
     'data-button-size': size,
     'data-button-variant': variant,
-    className: cn(
-      styles.container,
-      className,
-      'fs-button',
-      disabled ? styles.disabled : '',
-    ),
+    className: cn(styles.container, className, 'fs-button', disabled ? styles.disabled : ''),
   };
 
   switch (element) {

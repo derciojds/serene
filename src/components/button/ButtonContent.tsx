@@ -3,5 +3,5 @@ interface ButtonContentProps {
 }
 
 export function ButtonContent({ text }: ButtonContentProps) {
-  return text;
+  return <span>{text}</span>;
 }

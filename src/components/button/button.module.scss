@@ -10,14 +10,7 @@ a.container {
   background: var(--color-accent);
   color: var(--color-primary);
 
-  transition:
-    background var(--hover-transition),
-    filter var(--hover-transition);
-
-  &:hover {
-    filter: brightness(0.7);
-  }
-
+  transition: background var(--hover-transition);
   & svg {
     stroke: var(--color-svg-stroke);
   }
