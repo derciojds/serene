@@ -183,32 +183,29 @@ export function ChevronRight() {
   );
 }
 
-export function Filter() {
+export function Sort() {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M3 9L14 9.00008"
-        // stroke="black"
+        d="M4 12L15 12.0001"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M3 15H10"
-        // stroke="black"
+        d="M4 18H11"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
-        d="M3 3H19"
-        // stroke="black"
+        d="M4 6H20"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
