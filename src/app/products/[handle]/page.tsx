@@ -1,11 +1,13 @@
-import { QuantitySelector } from '@/components/layout/product/QuantitySelector';
-import { VariantSelector } from '@/components/layout/product/VariantSelector';
+import { AddToCart } from '@/components/cart/add-to-cart';
+import { Gallery } from '@/components/layout/product-info/Gallery';
+import { QuantitySelector } from '@/components/layout/product-info/QuantitySelector';
+import { RelatedProducts } from '@/components/layout/product-info/RelatedProducts';
+import { VariantSelector } from '@/components/layout/product-info/VariantSelector';
+import { Price } from '@/components/price';
 import { HIDDEN_PRODUCT_TAG } from '@/lib/shopify/constants';
 import { getProduct } from '@/lib/shopify/operations/product';
-import { Image as TImage } from '@/lib/shopify/types';
 import { cn } from '@/utils';
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import styles from './product.module.scss';
 
@@ -58,58 +60,28 @@ export default async function ProductPage({ params }: { params: { handle: string
     <>
       <div className="spacer" />
       <div className={cn(styles.details, 'container-narrow')}>
-        <Thumbnail images={product.images} />
         <Gallery images={product.images} />
         <div className={styles.info}>
-          <h1 className="fs-body-lg">{product.title}</h1>
-          <div className="fs-body-lg">
-            <span>{product.priceRange.maxVariantPrice.amount}</span>
+          <h1 className="fs-h3">{product.title}</h1>
+          <div className={cn(styles.price, 'fs-body-lg')}>
+            <Price
+              className="fs-body-sm"
+              amount={product.priceRange.maxVariantPrice.amount}
+              currencyCode={product.priceRange.maxVariantPrice.currencyCode}
+            />
           </div>
-          <div className={styles.variants}>
-            <form>
-              <VariantSelector options={product.options} variants={product.variants} />
-              <QuantitySelector totalInventory={product.totalInventory} />
-            </form>
-            <div>
-              <h2 className="fs-body-lg">Description</h2>
-              <p>{product.description}</p>
-            </div>
+          <VariantSelector options={product.options} variants={product.variants} />
+          <QuantitySelector totalInventory={product.totalInventory} />
+          <div className={styles.description}>
+            <h2 className="fs-body-lg">Description</h2>
+            <p>{product.description}</p>
           </div>
+          <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
         </div>
       </div>
+      <div className="container">
+        <RelatedProducts id={product.id} />
+      </div>
     </>
-  );
-}
-
-function Thumbnail({ images }: { images: TImage[] }) {
-  return (
-    <ul className={styles.thumbnails}>
-      {images.map((image) => (
-        <li key={image.url}>
-          <div>
-            <span>
-              <input type="submit" value="" title="Product thumbnail" />
-              <span>
-                <Image width={116} height={116} src={image.url} alt={image.altText} />
-              </span>
-            </span>
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Gallery({ images }: { images: TImage[] }) {
-  return (
-    <ul className={styles.gallery}>
-      {images.map((image) => (
-        <li key={image.url}>
-          <div>
-            <Image draggable={false} src={image.url} alt={image.altText} width={520} height={600} />
-          </div>
-        </li>
-      ))}
-    </ul>
   );
 }
