@@ -6,9 +6,5 @@ import { usePathname } from 'next/navigation';
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  return pathname === '/' ? (
-    <ReactLenis root>{children}</ReactLenis>
-  ) : (
-    <>{children}</>
-  );
+  return pathname !== '/products' ? <ReactLenis root>{children}</ReactLenis> : <>{children}</>;
 }

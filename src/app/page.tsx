@@ -11,20 +11,20 @@ import { Testmonials } from './sections/Testimonials';
 export default async function Home() {
   return (
     <>
-      <main>
-        <Hero />
-        <div className={styles.main}>
-          <div className={cn(styles.mainContent, 'container')}>
-            <Suspense>
-              <FeaturedProducts />
-            </Suspense>
-            <Ingredients />
-            <Testmonials />
-            <Newsletter />
-          </div>
+      <Hero />
+      <div className={styles.main}>
+        <div className={cn(styles.mainContent, 'container')}>
+          <Suspense>
+            <FeaturedProducts />
+          </Suspense>
+          <Ingredients />
+          <Testmonials />
+          <Newsletter />
         </div>
-      </main>
-      <Footer />
+      </div>
+      <Suspense>
+        <Footer />
+      </Suspense>
     </>
   );
 }

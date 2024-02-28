@@ -1,6 +1,7 @@
 import { getPage } from '@/lib/shopify/operations/page';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import styles from './page.module.scss';
 
 export const runtime = 'edge';
 
@@ -32,9 +33,11 @@ export default async function Page({ params }: { params: { page: string } }) {
   if (!page) return notFound();
 
   return (
-    <>
-      <h1 className="fs-h1">{page.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: page.body }} />
-    </>
+    <div className={styles.container}>
+      <div className={'container'}>
+        <div className="spacer"></div>
+        <div dangerouslySetInnerHTML={{ __html: page.body }} />
+      </div>
+    </div>
   );
 }

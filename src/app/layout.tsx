@@ -11,11 +11,7 @@ export const metadata: Metadata = {
   description: 'Indulge in luxury with mood-enhancing perfumes',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={font.className}>
